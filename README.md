@@ -2,14 +2,29 @@
 
 Divs' personal corner of the internet, built as an interactive Windows-style desktop.
 
-## Run locally
+This repository now uses a component-based Next.js/TypeScript architecture rather than the original static prototype.
 
-Open `index.html` in a browser or serve the repository root with any static file server.
+## Current slice
 
-## Current features
-
-- Functional terminal commands
-- Draggable desktop windows
-- Projects, writing, media, and links
-- Forge resident mascot
+- Reducer-driven desktop window manager
+- Selectable desktop icons with keyboard navigation
+- Draggable, focusable, minimizable and maximizable windows
+- Functional terminal application
+- Complete **My Computer** desktop component
+- Taskbar state synchronized with open applications
 - Direct article routes
+
+The remaining desktop applications are being built one component at a time.
+
+## Development
+
+```bash
+pnpm install
+pnpm dev
+```
+
+Production build:
+
+```bash
+pnpm build
+```
