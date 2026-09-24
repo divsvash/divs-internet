@@ -6,6 +6,7 @@ import { Taskbar } from "./Taskbar";
 import { WindowFrame } from "@/components/windows/WindowFrame";
 import { MyComputerApp } from "@/components/apps/MyComputerApp";
 import { TerminalApp } from "@/components/apps/TerminalApp";
+import { RecycleBinApp } from "@/components/apps/RecycleBinApp";
 import { activeWindowId, windowReducer } from "@/state/window-reducer";
 import type { AppId, WindowState } from "@/types/desktop";
 
@@ -16,7 +17,7 @@ const desktopApps: Array<{ id: AppId; label: string; icon: ReactNode; ready: boo
   { id: "writing", label: "My Writing", icon: <BookOpenText size={34} />, ready: false },
   { id: "radio", label: "divs.radio", icon: <Disc3 size={34} />, ready: false },
   { id: "internet", label: "The Internet", icon: <Globe2 size={34} />, ready: false },
-  { id: "recycle-bin", label: "Recycle Bin", icon: <Recycle size={34} />, ready: false },
+  { id: "recycle-bin", label: "Recycle Bin", icon: <Recycle size={34} />, ready: true },
   { id: "forge", label: "FORGE.EXE", icon: <Cat size={34} />, ready: false },
 ];
 const initialWindows: WindowState[] = [
@@ -38,7 +39,7 @@ export function DesktopShell() {
   }
   return <main className="desktop" tabIndex={-1} onKeyDown={desktopKeyDown} onClick={(event) => { if (event.target === event.currentTarget) setSelected(null); }}>
     <div className="desktop-icons">{desktopApps.map((app) => <DesktopIcon key={app.id} {...app} selected={selected === app.id} disabled={!app.ready} onSelect={setSelected} onOpen={app.ready ? open : () => undefined} />)}</div>
-    {windows.map((window) => <WindowFrame key={window.id} window={window} active={activeId === window.id} onFocus={() => dispatch({ type: "FOCUS", id: window.id })} onClose={() => dispatch({ type: "CLOSE", id: window.id })} onMinimize={() => dispatch({ type: "MINIMIZE", id: window.id })} onMaximize={() => dispatch({ type: "TOGGLE_MAXIMIZE", id: window.id })} onMove={(position) => dispatch({ type: "MOVE", id: window.id, position })}>{window.id === "terminal" ? <TerminalApp onOpen={open} /> : window.id === "my-computer" ? <MyComputerApp onOpen={open} /> : <div className="queued-app"><strong>{window.title}</strong><p>This component is next in the build queue.</p></div>}</WindowFrame>)}
+    {windows.map((window) => <WindowFrame key={window.id} window={window} active={activeId === window.id} onFocus={() => dispatch({ type: "FOCUS", id: window.id })} onClose={() => dispatch({ type: "CLOSE", id: window.id })} onMinimize={() => dispatch({ type: "MINIMIZE", id: window.id })} onMaximize={() => dispatch({ type: "TOGGLE_MAXIMIZE", id: window.id })} onMove={(position) => dispatch({ type: "MOVE", id: window.id, position })}>{window.id === "terminal" ? <TerminalApp onOpen={open} /> : window.id === "my-computer" ? <MyComputerApp onOpen={open} /> : window.id === "recycle-bin" ? <RecycleBinApp /> : <div className="queued-app"><strong>{window.title}</strong><p>This component is next in the build queue.</p></div>}</WindowFrame>)}
     <Taskbar windows={windows} activeId={activeId} onTaskClick={(window) => dispatch({ type: window.isMinimized || activeId !== window.id ? "FOCUS" : "MINIMIZE", id: window.id })} />
   </main>;
 }

@@ -22,12 +22,14 @@ export function TerminalApp({ onOpen }: { onOpen: (id: AppId) => void }) {
     setHistory(updatedHistory); setHistoryIndex(updatedHistory.length);
     if (command === "clear" || command === "cls") { setLines([]); return; }
     let output = "";
-    if (command === "help") output = "SHELL     help · clear · dir · cd · pwd · open · history\nSYSTEM    whoami · ver · neofetch · fortune\nAPPS      my-computer · terminal\nOTHER     sudo · ping forge";
+    if (command === "help") output = "SHELL     help · clear · dir · cd · pwd · open · history\nSYSTEM    whoami · ver · neofetch · fortune\nAPPS      my-computer · recycle-bin · terminal\nOTHER     sudo · ping forge";
     else if (command === "dir" || command === "ls") output = cwd.length ? "..\nREADME.TXT\nCOMPONENT.QUEUED" : "MY-COMPUTER   <APP>\nPROJECTS      <DIR>\nWRITING       <DIR>\nMEDIA         <DIR>\nFORGE.EXE";
     else if (command === "pwd") output = prompt.slice(0, -1);
     else if (command === "cd") { if (!args[0] || args[0] === "\\") setCwd([]); else if (args[0] === "..") setCwd((current) => current.slice(0, -1)); else if (["projects", "writing", "media"].includes(args[0])) setCwd([args[0]]); else output = "The system cannot find the path specified."; if (!output) output = "Directory changed."; }
     else if (command === "open" && ["my-computer", "computer"].includes(args[0])) { onOpen("my-computer"); output = "Opening My Computer..."; }
     else if (["my-computer", "computer"].includes(command)) { onOpen("my-computer"); output = "Opening My Computer..."; }
+    else if (command === "open" && ["recycle-bin", "recycle", "trash"].includes(args[0])) { onOpen("recycle-bin"); output = "Opening Recycle Bin..."; }
+    else if (["recycle-bin", "recycle", "trash"].includes(command)) { onOpen("recycle-bin"); output = "Opening Recycle Bin..."; }
     else if (command === "history") output = updatedHistory.map((item, index) => `${String(index + 1).padStart(2, "0")}  ${item}`).join("\n");
     else if (command === "whoami") output = "divs — engineer, writer, professional rabbit-hole resident.";
     else if (command === "ver") output = "divs.internet 95 [Version 1.2.2026]\nReact desktop subsystem: operational.";
