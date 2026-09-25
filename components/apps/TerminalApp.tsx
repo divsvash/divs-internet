@@ -22,7 +22,7 @@ export function TerminalApp({ onOpen }: { onOpen: (id: AppId) => void }) {
     setHistory(updatedHistory); setHistoryIndex(updatedHistory.length);
     if (command === "clear" || command === "cls") { setLines([]); return; }
     let output = "";
-    if (command === "help") output = "SHELL     help · clear · dir · cd · pwd · open · history\nSYSTEM    whoami · ver · neofetch · fortune\nAPPS      my-computer · internet · radio · recycle-bin · terminal\nOTHER     sudo · ping forge";
+    if (command === "help") output = "SHELL     help · clear · dir · cd · pwd · open · history\nSYSTEM    whoami · ver · neofetch · fortune\nAPPS      my-computer · projects · writing · internet · radio · recycle-bin\nOTHER     sudo · ping forge";
     else if (command === "dir" || command === "ls") output = cwd.length ? "..\nREADME.TXT\nCOMPONENT.QUEUED" : "MY-COMPUTER   <APP>\nPROJECTS      <DIR>\nWRITING       <DIR>\nMEDIA         <DIR>\nFORGE.EXE";
     else if (command === "pwd") output = prompt.slice(0, -1);
     else if (command === "cd") { if (!args[0] || args[0] === "\\") setCwd([]); else if (args[0] === "..") setCwd((current) => current.slice(0, -1)); else if (["projects", "writing", "media"].includes(args[0])) setCwd([args[0]]); else output = "The system cannot find the path specified."; if (!output) output = "Directory changed."; }
@@ -34,6 +34,10 @@ export function TerminalApp({ onOpen }: { onOpen: (id: AppId) => void }) {
     else if (["internet", "browser", "web"].includes(command)) { onOpen("internet"); output = "Connecting to divs.internet..."; }
     else if (command === "open" && ["radio", "music", "cd-player"].includes(args[0])) { onOpen("radio"); output = "Opening divs.radio..."; }
     else if (["radio", "music", "cd-player"].includes(command)) { onOpen("radio"); output = "Opening divs.radio..."; }
+    else if (command === "open" && ["projects", "work"].includes(args[0])) { onOpen("projects"); output = "Opening C:\\DIVS\\PROJECTS..."; }
+    else if (["projects", "work"].includes(command)) { onOpen("projects"); output = "Opening C:\\DIVS\\PROJECTS..."; }
+    else if (command === "open" && ["writing", "blog", "articles"].includes(args[0])) { onOpen("writing"); output = "Opening C:\\DIVS\\WRITING..."; }
+    else if (["writing", "blog", "articles"].includes(command)) { onOpen("writing"); output = "Opening C:\\DIVS\\WRITING..."; }
     else if (command === "history") output = updatedHistory.map((item, index) => `${String(index + 1).padStart(2, "0")}  ${item}`).join("\n");
     else if (command === "whoami") output = "divs — engineer, writer, professional rabbit-hole resident.";
     else if (command === "ver") output = "divs.internet 95 [Version 1.2.2026]\nReact desktop subsystem: operational.";

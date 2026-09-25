@@ -20,10 +20,10 @@ const locations: Array<{
   icon: typeof Monitor;
   ready: boolean;
 }> = [
-  { id: "projects", label: "Projects (C:)", detail: "Cortex, Forge, Helios, Converge", icon: HardDrive, ready: false },
-  { id: "writing", label: "Writing (D:)", detail: "Essays, field notes, unfinished thoughts", icon: BookOpenText, ready: false },
-  { id: "radio", label: "Media (E:)", detail: "Music, books, movies, LeetCode damage", icon: Radio, ready: false },
-  { id: "internet", label: "The Internet", detail: "GitHub, X, Medium and elsewhere", icon: Globe2, ready: false },
+  { id: "projects", label: "Projects (C:)", detail: "Cortex, Forge, Helios, Converge", icon: HardDrive, ready: true },
+  { id: "writing", label: "Writing (D:)", detail: "Essays, field notes, unfinished thoughts", icon: BookOpenText, ready: true },
+  { id: "radio", label: "Media (E:)", detail: "Music, books, movies, LeetCode damage", icon: Radio, ready: true },
+  { id: "internet", label: "The Internet", detail: "GitHub, X, Medium and elsewhere", icon: Globe2, ready: true },
   { id: "forge", label: "Forge", detail: "Resident robot cat and future maintainer", icon: FolderKanban, ready: false },
 ];
 
