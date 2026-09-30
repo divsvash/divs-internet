@@ -8,6 +8,8 @@ export type AppId =
   | "radio"
   | "internet"
   | "recycle-bin"
+  | "camera"
+  | "sudoku"
   | "forge";
 
 export type WindowState = {

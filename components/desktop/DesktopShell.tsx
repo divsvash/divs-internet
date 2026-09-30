@@ -14,7 +14,7 @@ import { ProjectsApp } from "@/components/apps/ProjectsApp";
 import { activeWindowId, windowReducer } from "@/state/window-reducer";
 import type { AppId, WindowState } from "@/types/desktop";
 
-const iconMap: Record<AppId, ReactNode> = { terminal: <SquareTerminal size={18} />, "my-computer": <Monitor size={18} />, projects: <FolderKanban size={18} />, writing: <BookOpenText size={18} />, radio: <Disc3 size={18} />, internet: <Globe2 size={18} />, "recycle-bin": <Recycle size={18} />, forge: <Cat size={18} /> };
+const iconMap: Record<AppId, ReactNode> = { terminal: <SquareTerminal size={18} />, "my-computer": <Monitor size={18} />, projects: <FolderKanban size={18} />, writing: <BookOpenText size={18} />, radio: <Disc3 size={18} />, internet: <Globe2 size={18} />, "recycle-bin": <Recycle size={18} />, camera: <span aria-hidden="true">▣</span>, sudoku: <span aria-hidden="true">9×9</span>, forge: <Cat size={18} /> };
 const desktopApps: Array<{ id: AppId; label: string; icon: ReactNode; ready: boolean }> = [
   { id: "my-computer", label: "My Computer", icon: <Monitor size={34} />, ready: true },
   { id: "projects", label: "My Projects", icon: <FolderKanban size={34} />, ready: true },
@@ -22,9 +22,11 @@ const desktopApps: Array<{ id: AppId; label: string; icon: ReactNode; ready: boo
   { id: "radio", label: "divs.radio", icon: <Disc3 size={34} />, ready: true },
   { id: "internet", label: "The Internet", icon: <Globe2 size={34} />, ready: true },
   { id: "recycle-bin", label: "Recycle Bin", icon: <Recycle size={34} />, ready: true },
+  { id: "camera", label: "Camera", icon: <span className="placeholder-icon">▣</span>, ready: false },
+  { id: "sudoku", label: "Sudoku.exe", icon: <span className="placeholder-icon placeholder-icon-small">9×9</span>, ready: false },
   { id: "forge", label: "FORGE.EXE", icon: <Cat size={34} />, ready: false },
 ];
-const desktopShortcuts = desktopApps.filter((app) => ["my-computer", "recycle-bin", "forge"].includes(app.id));
+const desktopShortcuts = desktopApps.filter((app) => !["projects", "writing"].includes(app.id));
 const initialWindows: WindowState[] = [
   { id: "terminal", title: "C:\\DIVS — Command Prompt", icon: iconMap.terminal, isOpen: true, isMinimized: false, isMaximized: false, zIndex: 12, position: { x: 150, y: 44 }, size: { width: 820, height: 540 } },
   { id: "my-computer", title: "My Computer", icon: iconMap["my-computer"], isOpen: false, isMinimized: false, isMaximized: false, zIndex: 11, position: { x: 330, y: 95 }, size: { width: 700, height: 510 } },
