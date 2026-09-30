@@ -42,3 +42,12 @@ html,body{font-size:13px;-webkit-font-smoothing:none;text-rendering:geometricPre
 .radio-console{padding:6px}.radio-display{height:58px;grid-template-columns:48px 1fr 108px;padding:6px 10px;font-size:17px}.radio-display strong{font-size:25px}.radio-controls{gap:4px;margin:6px 0}.radio-controls .win95-button{width:47px}.radio-fields{grid-template-columns:48px 1fr;gap:3px}.radio-fields>span{font-size:11px}.radio-fields>div{padding:2px 5px;font-size:11px}.radio-volume{margin-top:6px;font-size:11px}.playlist-heading,.radio-playlist button{grid-template-columns:42px 1fr 48px}.radio-playlist button{padding:5px 7px;font-size:12px}
 .recycle-grid{grid-template-columns:repeat(auto-fill,minmax(105px,1fr));gap:3px;padding:10px}.recycle-file{min-height:78px;padding:5px;font-size:11px}
 @media(max-width:760px){.desktop:after{bottom:38px}.internet-links{grid-template-columns:1fr}.internet-links button:nth-child(odd){border-right:0}.project-grid button{grid-template-columns:40px 1fr}.project-grid small{grid-column:2}.taskbar{height:38px}.window-frame.maximized{bottom:38px!important}}
+
+/* Terminal-first hierarchy. The desktop is context, not navigation. */
+.desktop-icons-quiet{left:auto;right:12px;top:12px;bottom:auto;opacity:.72;gap:1px}
+.desktop-icons-quiet:hover,.desktop-icons-quiet:focus-within{opacity:1}
+.desktop-icons-quiet .desktop-icon{width:76px;min-height:66px;font-size:11px}
+.desktop-icons-quiet .desktop-icon-art{width:34px;height:33px}
+.terminal-screen{font-size:16px;line-height:1.5;padding:18px 20px}
+.terminal-line{margin-bottom:14px}.terminal-form{gap:8px}
+@media(max-width:760px){.desktop-icons-quiet{display:none}.window-frame[aria-label^="C:\\DIVS"]{top:18px!important;height:calc(100vh - 64px)!important}.terminal-screen{font-size:14px;padding:14px}}
